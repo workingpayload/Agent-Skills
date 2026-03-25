@@ -11,7 +11,7 @@
 ## 🚀 Quick Start
 
 ```bash
-npx agent-skills install
+npx @workingpayload/agent-skills install
 ```
 
 ---
