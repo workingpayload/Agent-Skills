@@ -1,41 +1,122 @@
 ---
 name: extension-extender
-description: Creates, fixes, and debugs browser extensions with efficiency and beautiful UI. Use when a user asks to build a Chrome/Firefox extension, create a browser extension popup, or debug extension manifest/scripts.
+description: Creates, fixes, and debugs Manifest V3 browser extensions for Chrome and Firefox with secure permissions scoping, CSP compliance, cross-browser compatibility, storage management, and version migration. Use when a user asks to build, fix, or debug a Chrome/Firefox extension, create a popup, or handle extension manifest issues.
 ---
 
 # Extension Extender
 
 ## Overview
 
-The Extension Extender skill specializes in creating modern, secure (Manifest V3), and visually appealing browser extensions. It provides boilerplates for robust extension architecture and beautiful vanilla CSS UIs.
+Builds modern Manifest V3 browser extensions with secure permissions, cross-browser compatibility (Chrome + Firefox), CSP compliance, storage management, and structured debugging. Produces `chrome://extensions`-ready code.
 
 ## Workflow
 
-When asked to create or modify a browser extension, follow these steps:
-
 ### 1. Project Initialization
 
-If the user wants a new extension or popup, use the provided boilerplate assets to give them a massive head start.
+Use `assets/manifest.json`, `assets/popup.html`, `assets/popup.css`, `assets/popup.js` as boilerplate if available. If assets are missing, generate inline:
 
-- **Manifest V3:** Use `assets/manifest.json` as the base. It includes modern defaults for service workers and action popups.
-- **Beautiful UI:** Use the combination of `assets/popup.html`, `assets/popup.css`, and `assets/popup.js`. 
-  - *Instruction:* Copy these files into the user's workspace using `write_file`.
+```json
+{
+  "manifest_version": 3,
+  "name": "My Extension",
+  "version": "1.0",
+  "action": { "default_popup": "popup.html" },
+  "permissions": [],
+  "host_permissions": []
+}
+```
 
-### 2. Styling and UI (The "Beautiful UI" Mandate)
+### 2. Permissions Scoping (Principle of Least Privilege)
 
-When modifying or creating new UI elements in the extension, you **must** adhere to the guidelines in `references/ui-guidelines.md`. Read this file if you need a refresher on building dark-mode compatible, native-feeling UIs.
+1. List every browser API the extension uses (`storage`, `tabs`, `scripting`).
+2. Use `optional_permissions` where possible — granted at runtime via `chrome.permissions.request()`, reduces install friction.
+3. URL patterns go in `host_permissions`, not `permissions`. Be specific: `"https://example.com/*"` over `"<all_urls>"`.
+4. Never request `"tabs"` just for current tab URL — use `"activeTab"` instead.
+5. After editing permissions, reload in `chrome://extensions` and verify no errors.
 
-### 3. Debugging & Fixing
+### 3. Firefox WebExtensions Compatibility
 
-When a user asks you to fix an extension:
-1. **Check the Manifest:** Ensure it is Manifest V3. Check for correct `host_permissions` and `permissions`. Service workers must be registered under `"background": { "service_worker": "..." }`.
-2. **Check Content Scripts:** Ensure they are properly injected via `content_scripts` in the manifest or programmatic injection (`chrome.scripting.executeScript`).
-3. **Verify DOM Readiness:** When querying the DOM in a popup or content script, ensure it runs after the DOM is loaded (e.g., `document.addEventListener('DOMContentLoaded', ...)`).
+- Replace `chrome.*` with `browser.*` using `webextension-polyfill` for cross-browser support.
+- Firefox MV3 background support differs: use `"background": { "scripts": ["background.js"] }` for Firefox (check MDN for current MV3 status).
+- `chrome.scripting.executeScript` → `browser.tabs.executeScript` (MV2) or `browser.scripting` (MV3 when supported).
+- `browser.action` is standard in both Chrome/Firefox MV3. Do not use `browser.browserAction`.
+- Test Firefox: `about:debugging#/runtime/this-firefox` → "Load Temporary Add-on".
 
-## Resources
+### 4. Content Security Policy (CSP)
 
-- **`assets/manifest.json`**: Standard Manifest V3 boilerplate.
-- **`assets/popup.html`**: Semantic, accessible HTML structure for a popup.
-- **`assets/popup.css`**: Beautiful, modern vanilla CSS with dark mode support.
-- **`assets/popup.js`**: Boilerplate popup logic.
-- **`references/ui-guidelines.md`**: Core principles for extension design.
+- No inline `<script>` or `onclick="..."` — move all JS to external `.js` files.
+- No `eval()`, `new Function()`, or dynamic code execution.
+- Remote resources (fonts, images): explicitly allow in manifest:
+  ```json
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; img-src 'self' https://cdn.example.com"
+  }
+  ```
+- Never relax `script-src` beyond `'self'`. Vendor third-party code locally.
+
+### 5. Storage Management
+
+**`chrome.storage.sync` vs `local`:**
+
+| Feature | `sync` | `local` |
+|---------|--------|---------|
+| Synced across devices | Yes (Google account) | No |
+| Quota | 100KB total, 8KB/item, 512 items | 5MB default (2GB with `unlimitedStorage`) |
+| Use for | Preferences, small config | Cached data, history, large datasets |
+
+Always check `chrome.runtime.lastError` after storage calls. Batch writes to avoid hitting quota.
+
+**Version upgrade data migration:**
+```javascript
+chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
+  if (reason === 'update') {
+    chrome.storage.local.get(['settings'], ({ settings }) => {
+      if (settings && !settings.schemaVersion) {
+        chrome.storage.local.set({
+          settings: { ...settings, schemaVersion: 2, newKey: settings.oldKey }
+        });
+      }
+    });
+  }
+});
+```
+Always track a `schemaVersion` field. Test migrations by loading the old version, saving data, then upgrading.
+
+### 6. Styling (Beautiful UI Defaults)
+
+- CSS custom properties for theming (`--color-primary`, `--bg-surface`).
+- Dark mode: `@media (prefers-color-scheme: dark)`.
+- Popup: 300–400px width, under 600px height. `rem` for fonts, `px` for borders/shadows.
+
+### 7. Debugging Decision Workflow
+
+1. **Manifest errors** → confirm `"manifest_version": 3`. Service worker: `"background": { "service_worker": "background.js" }` (not `"scripts"` array).
+2. **Popup errors** → right-click popup → Inspect. Background errors → `chrome://extensions` → service worker → Inspect.
+3. **Content script not injecting** → verify `content_scripts` in manifest or programmatic `chrome.scripting.executeScript`. Content scripts run in isolated world — can't access page JS vars.
+4. **DOM not ready** → wrap logic in `document.addEventListener('DOMContentLoaded', ...)`.
+5. **Message passing fails** → verify both sides use matching `type` fields in `chrome.runtime.sendMessage`/`onMessage`. Return `true` in listener if response is async.
+6. **Permission denied at runtime** → add missing permission to manifest, reload, re-test.
+7. **Service worker terminates mid-task** → MV3 service workers are ephemeral (30s idle timeout). Use `chrome.alarms` for periodic tasks; persist state in `chrome.storage` rather than in-memory variables.
+
+### 8. Content Script vs Host Page
+
+Content scripts share the DOM but not JS context (isolated world). Host page CSP does **not** block content scripts. To interact with page JS:
+- Inject via `chrome.scripting.executeScript({ world: "MAIN" })` (Chrome 95+).
+- Code in `MAIN` world **is** subject to host page CSP — no `eval()` or inline scripts.
+
+## Edge Cases
+
+1. **Service worker killed during long operation**: MV3 service workers terminate after ~30s of inactivity. For long-running work, use `chrome.offscreen.createDocument()` to get a persistent page, or break work into chunks persisted in storage.
+2. **Storage quota exceeded silently**: `chrome.storage.sync.set()` fails silently if quota is exceeded. Always check `chrome.runtime.lastError` and implement a fallback to `local` storage.
+3. **Cross-browser manifest differences**: Chrome requires `"service_worker"` for background; Firefox uses `"scripts"` array. Maintain two manifests or use a build step (webpack/vite) to generate platform-specific versions.
+
+## Testing
+
+- **Manual**: load unpacked via `chrome://extensions` (Chrome) or `about:debugging` (Firefox).
+- **Automated**: use `web-ext lint` (Mozilla) for manifest/CSP validation. For E2E: Playwright supports Chrome extensions via `--load-extension` launch arg.
+- **Web Store submission checklist**: single-purpose description, minimal permissions justification, privacy policy if using `host_permissions` or user data.
+
+## Output Format
+
+- Provide complete updated files.
+- State: (a) root cause (if debugging), (b) what changed, (c) how to verify.

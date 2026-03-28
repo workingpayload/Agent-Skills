@@ -1,0 +1,41 @@
+{
+  "name": "@workingpayload/agent-skills",
+  "version": "2.0.0",
+  "description": "Install and run AI-powered developer skills across Claude and Gemini",
+  "bin": {
+    "agent-skills": "./bin/cli.js"
+  },
+  "scripts": {
+    "validate": "node bin/cli.js validate",
+    "score": "node bin/cli.js score",
+    "test-skills": "node bin/cli.js test",
+    "build-index": "node bin/cli.js build-index"
+  },
+  "keywords": [
+    "ai",
+    "claude",
+    "gemini",
+    "skills",
+    "developer-tools",
+    "code-review",
+    "debugging"
+  ],
+  "author": "workingpayload",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/workingpayload/agent-skills"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "bin/",
+    "scripts/",
+    "skills.json",
+    "skills-routing.json",
+    "*/skill.md",
+    "*/SKILL.md",
+    "extension-extender/assets/"
+  ]
+}

@@ -1,0 +1,1131 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-03-28T10:43:30+00:00",
+  "skill_count": 54,
+  "skills": [
+    {
+      "name": "accessplus",
+      "description": "Designs and implements role-based access control (RBAC), fine-grained permissions, and WCAG 2.1-compliant accessibility. Use when a user needs authorization models, permission policies, ARIA markup, screen-reader support, or audit of access control logic.",
+      "categories": [
+        "security",
+        "ai/ml"
+      ],
+      "triggers": [
+        "authorization",
+        "models",
+        "permission",
+        "policies",
+        "aria",
+        "markup",
+        "screen-reader",
+        "support",
+        "audit",
+        "access",
+        "control",
+        "logic"
+      ]
+    },
+    {
+      "name": "algomaster",
+      "description": "Analyzes algorithmic complexity, selects optimal data structures, and rewrites inefficient solutions using DP, greedy, graph, and divide-and-conquer strategies. Use when a user needs Big-O analysis, a faster algorithm, or help solving a competitive-programming or production performance problem.",
+      "categories": [
+        "database",
+        "docs",
+        "performance"
+      ],
+      "triggers": [
+        "big-o",
+        "analysis",
+        "faster",
+        "algorithm",
+        "help",
+        "solving",
+        "competitive-programming",
+        "production",
+        "performance",
+        "problem"
+      ]
+    },
+    {
+      "name": "apiforge",
+      "description": "Designs production-grade REST and GraphQL APIs including OpenAPI 3.x specs, versioning strategy, RFC 7807 error formats, cursor/offset pagination, and authentication schemes. Use when a user needs to create, review, or improve an API contract, endpoint design, or API documentation.",
+      "categories": [
+        "security",
+        "database",
+        "architecture",
+        "docs"
+      ],
+      "triggers": [
+        "create",
+        "review",
+        "improve",
+        "api",
+        "contract",
+        "endpoint",
+        "design",
+        "documentation"
+      ]
+    },
+    {
+      "name": "architekt-ai",
+      "description": "Designs scalable system architectures using C4 model diagrams, Architecture Decision Records (ADRs), CQRS, event sourcing, and microservices patterns. Use when a user needs to design a new system, evaluate trade-offs between architectural styles, document decisions, or review an existing architecture for scalability and resilience.",
+      "categories": [
+        "architecture",
+        "docs",
+        "ai/ml"
+      ],
+      "triggers": [
+        "design",
+        "new",
+        "system",
+        "evaluate",
+        "trade-offs",
+        "between",
+        "architectural",
+        "styles",
+        "document",
+        "decisions",
+        "review",
+        "existing",
+        "architecture",
+        "scalability",
+        "resilience"
+      ]
+    },
+    {
+      "name": "authcraft",
+      "description": "Builds secure authentication and authorization systems covering OAuth 2.0/PKCE, JWT lifecycle management, password hashing with bcrypt/Argon2, session security, and OWASP ASVS compliance. Use when a user needs to implement login flows, token management, MFA, SSO, or audit an existing auth system for vulnerabilities.",
+      "categories": [
+        "security",
+        "frontend"
+      ],
+      "triggers": [
+        "implement",
+        "login",
+        "flows",
+        "token",
+        "management",
+        "mfa",
+        "sso",
+        "audit",
+        "existing",
+        "auth",
+        "system",
+        "vulnerabilities"
+      ]
+    },
+    {
+      "name": "autoscriptor",
+      "description": "Generates production-grade automation scripts in Bash, Python, and PowerShell with idempotency, dry-run mode, error handling, and ShellCheck compliance. Use when a user needs a cron job, deployment script, file processing utility, system automation, or any CLI tool for repetitive developer or ops tasks.",
+      "categories": [
+        "devops"
+      ],
+      "triggers": [
+        "cron",
+        "job",
+        "deployment",
+        "script",
+        "file",
+        "processing",
+        "utility",
+        "system",
+        "automation",
+        "any",
+        "cli",
+        "tool",
+        "repetitive",
+        "developer",
+        "ops",
+        "tasks"
+      ]
+    },
+    {
+      "name": "boilercore",
+      "description": "Scaffolds production-ready project structures with ecosystem-appropriate conventions, CI/CD pipelines, linter/formatter configs, and dependency setup. Use when a user needs to start a new project, add missing tooling infrastructure to an existing codebase, or standardize a project layout.",
+      "categories": [
+        "frontend",
+        "devops",
+        "database"
+      ],
+      "triggers": [
+        "start",
+        "new",
+        "project",
+        "add",
+        "missing",
+        "tooling",
+        "infrastructure",
+        "existing",
+        "codebase",
+        "standardize",
+        "layout"
+      ]
+    },
+    {
+      "name": "bughunter-pro",
+      "description": "Diagnoses application bugs using hypothesis-driven debugging, reproduces failures with minimal test cases, isolates root causes, and produces regression tests. Use when a user has an error, unexpected behavior, crash, memory leak, race condition, or intermittent failure they cannot explain.",
+      "categories": [
+        "testing",
+        "performance"
+      ],
+      "triggers": [
+        "error",
+        "unexpected",
+        "behavior",
+        "crash",
+        "memory",
+        "leak",
+        "race",
+        "condition",
+        "intermittent",
+        "failure",
+        "they",
+        "cannot",
+        "explain"
+      ]
+    },
+    {
+      "name": "changescribe",
+      "description": "Generates and maintains changelogs following Keep a Changelog format and Conventional Commits, determines semver bump rules from commit history, and parses git log output into structured release notes. Use when a user needs to create a CHANGELOG.md, prepare release notes, determine the next version number, or automate changelog generation in CI.",
+      "categories": [
+        "database",
+        "docs",
+        "git"
+      ],
+      "triggers": [
+        "create",
+        "changelog"
+      ]
+    },
+    {
+      "name": "codesage",
+      "description": "Performs structured code reviews with severity-tiered findings covering security, correctness, performance, and maintainability. Uses language-specific linters and static analysis tools. Use when a user submits code for review, asks for feedback on a PR, or needs an audit of a module or function.",
+      "categories": [
+        "security",
+        "database",
+        "docs",
+        "performance"
+      ],
+      "triggers": [
+        "submits",
+        "code",
+        "review",
+        "feedback",
+        "audit",
+        "module",
+        "function"
+      ]
+    },
+    {
+      "name": "commitcraft",
+      "description": "Crafts Conventional Commits v1.0.0 compliant messages by analyzing git diffs. Use when a user asks for help with commit messages, git commits, or wants to commit staged changes.",
+      "categories": [
+        "git"
+      ],
+      "triggers": [
+        "help",
+        "commit",
+        "messages",
+        "git",
+        "commits",
+        "staged",
+        "changes"
+      ]
+    },
+    {
+      "name": "coveragemax",
+      "description": "Identifies untested code paths and generates targeted unit tests to reach 80%+ coverage using pytest-cov, Jest, Istanbul/nyc, or JaCoCo. Use when a user asks to improve test coverage, add missing tests, or analyze coverage reports.",
+      "categories": [
+        "testing",
+        "ai/ml"
+      ],
+      "triggers": [
+        "improve",
+        "test",
+        "coverage",
+        "add",
+        "missing",
+        "tests",
+        "analyze",
+        "reports"
+      ]
+    },
+    {
+      "name": "crongenius",
+      "description": "Designs correct cron expressions, schedules background jobs with overlap prevention and retry logic, and selects the right scheduler (Celery Beat, systemd timers, EventBridge, GitHub Actions schedule). Use when a user asks about cron jobs, scheduled tasks, or background job automation.",
+      "categories": [
+        "devops",
+        "git"
+      ],
+      "triggers": [
+        "about",
+        "cron",
+        "jobs",
+        "scheduled",
+        "tasks",
+        "background",
+        "job",
+        "automation"
+      ]
+    },
+    {
+      "name": "datapolish",
+      "description": "Cleans, normalizes, and validates raw datasets using pandas, polars, or Great Expectations. Profiles data quality, removes duplicates, coerces types, imputes nulls, and produces a quality report. Use when a user asks to clean data, fix data quality issues, or prepare data for analysis.",
+      "categories": [
+        "database",
+        "performance",
+        "ai/ml"
+      ],
+      "triggers": [
+        "clean",
+        "data",
+        "fix",
+        "quality",
+        "issues",
+        "prepare",
+        "analysis"
+      ]
+    },
+    {
+      "name": "dataweaver",
+      "description": "Designs normalized database schemas (1NF-3NF), writes optimized SQL with EXPLAIN ANALYZE, and manages reversible migrations with Flyway, Alembic, or Prisma Migrate. Use when a user asks for database design, schema changes, query optimization, or migration scripts.",
+      "categories": [
+        "database",
+        "docs",
+        "performance"
+      ],
+      "triggers": [
+        "database",
+        "design",
+        "schema",
+        "changes",
+        "query",
+        "optimization",
+        "migration",
+        "scripts"
+      ]
+    },
+    {
+      "name": "dockmaster",
+      "description": "Creates optimized, secure Dockerfiles using multi-stage builds, non-root users, pinned digests, and .dockerignore. Scans images with Trivy, writes Docker Compose files, and advises on Helm chart structure. Use when a user asks to write a Dockerfile, containerize an application, or set up container orchestration.",
+      "categories": [
+        "security",
+        "frontend",
+        "devops",
+        "docs",
+        "performance"
+      ],
+      "triggers": [
+        "write",
+        "dockerfile",
+        "containerize",
+        "application",
+        "container",
+        "orchestration"
+      ]
+    },
+    {
+      "name": "docugenie",
+      "description": "Writes OpenAPI 3.x specs, JSDoc/TSDoc/Google-style docstrings, and developer guides with working code examples. Use when a user asks to document an API, write docstrings, generate a README, or create a developer guide.",
+      "categories": [
+        "frontend",
+        "docs"
+      ],
+      "triggers": [
+        "document",
+        "api",
+        "write",
+        "docstrings",
+        "generate",
+        "readme",
+        "create",
+        "developer",
+        "guide"
+      ]
+    },
+    {
+      "name": "edgeguard",
+      "description": "Systematically finds edge cases using boundary value analysis, equivalence partitioning, property-based testing (Hypothesis/fast-check), fuzzing, and mutation testing. Use when a user asks to find edge cases, stress-test logic, or make tests more robust.",
+      "categories": [
+        "testing",
+        "frontend"
+      ],
+      "triggers": [
+        "find",
+        "edge",
+        "cases",
+        "stress-test",
+        "logic",
+        "make",
+        "tests",
+        "more",
+        "robust"
+      ]
+    },
+    {
+      "name": "envwizard",
+      "description": "Manages environment variables and secrets securely: creates .env.example, validates required vars at startup with envalid or pydantic-settings, integrates vault solutions (HashiCorp Vault, AWS Secrets Manager, Doppler), prevents secret leaks with git-secrets, and separates build-time from runtime config. Use when a user asks to set up environment config, manage secrets, or validate environment variables.",
+      "categories": [
+        "security",
+        "frontend",
+        "devops",
+        "git"
+      ],
+      "triggers": [
+        "environment",
+        "config",
+        "manage",
+        "secrets",
+        "validate",
+        "variables"
+      ]
+    },
+    {
+      "name": "errormedic",
+      "description": "Diagnoses application errors by parsing stack traces, classifying error taxonomy, correlating source maps, verifying fixes, and connecting to Sentry/Datadog alerts. Use when a user shares an error, exception, stack trace, or crash log and needs it diagnosed and fixed.",
+      "categories": [],
+      "triggers": [
+        "shares",
+        "error",
+        "exception",
+        "stack",
+        "trace",
+        "crash",
+        "log",
+        "diagnosed",
+        "fixed"
+      ]
+    },
+    {
+      "name": "extension-extender",
+      "description": "Creates, fixes, and debugs Manifest V3 browser extensions for Chrome and Firefox with secure permissions scoping, CSP compliance, cross-browser compatibility, storage management, and version migration. Use when a user asks to build, fix, or debug a Chrome/Firefox extension, create a popup, or handle extension manifest issues.",
+      "categories": [
+        "frontend",
+        "database",
+        "ai/ml"
+      ],
+      "triggers": [
+        "build",
+        "fix",
+        "debug",
+        "chrome",
+        "firefox",
+        "extension",
+        "create",
+        "popup",
+        "handle",
+        "manifest",
+        "issues"
+      ]
+    },
+    {
+      "name": "fastapi-furious",
+      "description": "Builds, debugs, and fixes FastAPI applications with structured project scaffolding, endpoint checklists, Alembic migrations, security (CORS, rate limiting, JWT), async testing with httpx, and advanced patterns (WebSockets, file uploads, BackgroundTasks). Use when a user asks to build, create, fix, debug, or improve FastAPI code.",
+      "categories": [
+        "security",
+        "testing",
+        "frontend",
+        "database"
+      ],
+      "triggers": [
+        "build",
+        "create",
+        "fix",
+        "debug",
+        "improve",
+        "fastapi",
+        "code"
+      ]
+    },
+    {
+      "name": "featuresmith",
+      "description": "Decomposes product requirements into actionable engineering tasks with acceptance criteria, story points, and feature flag configurations. Use when a user wants to break down a feature, write user stories, define Given/When/Then scenarios, or set up feature flags with LaunchDarkly or Unleash.",
+      "categories": [
+        "frontend",
+        "docs"
+      ],
+      "triggers": [
+        "break",
+        "down",
+        "feature",
+        "write",
+        "stories",
+        "define",
+        "given",
+        "when",
+        "then",
+        "scenarios",
+        "flags",
+        "launchdarkly",
+        "unleash"
+      ]
+    },
+    {
+      "name": "flexilayout",
+      "description": "Designs and debugs responsive CSS layouts using Flexbox, CSS Grid, container queries, and design tokens. Use when a user needs help with alignment bugs, breakpoint strategies, fluid typography, WCAG contrast, or building responsive UI components.",
+      "categories": [
+        "frontend"
+      ],
+      "triggers": [
+        "help",
+        "alignment",
+        "bugs",
+        "breakpoint",
+        "strategies",
+        "fluid",
+        "typography",
+        "wcag",
+        "contrast",
+        "building",
+        "responsive",
+        "components"
+      ]
+    },
+    {
+      "name": "flowtester",
+      "description": "Writes end-to-end and integration tests using Playwright or Cypress with the Page Object Model, AAA pattern, and CI-friendly configuration. Use when a user needs help with E2E test structure, test isolation, flaky test debugging, API contract testing, or CI pipeline integration.",
+      "categories": [
+        "testing",
+        "devops",
+        "docs",
+        "ai/ml"
+      ],
+      "triggers": [
+        "help",
+        "e2e",
+        "test",
+        "structure",
+        "isolation",
+        "flaky",
+        "debugging",
+        "api",
+        "contract",
+        "testing",
+        "pipeline",
+        "integration"
+      ]
+    },
+    {
+      "name": "functionforge",
+      "description": "Writes pure, testable utility functions using functional programming principles — immutability, referential transparency, Result/Either types, currying, and pipe/compose. Use when a user needs to generate or refactor functions with explicit type signatures, safe error handling, or composable data transforms.",
+      "categories": [
+        "testing",
+        "database",
+        "docs"
+      ],
+      "triggers": [
+        "generate",
+        "refactor",
+        "functions",
+        "explicit",
+        "type",
+        "signatures",
+        "safe",
+        "error",
+        "handling",
+        "composable",
+        "data",
+        "transforms"
+      ]
+    },
+    {
+      "name": "inputshield",
+      "description": "Implements rigorous input validation, sanitization, and encoding to prevent OWASP Top 10 vulnerabilities including XSS, SQL injection, and command injection. Use when a user needs schema validation with Zod/Joi/Pydantic, parameterized queries, CSP headers, allowlist strategies, or context-specific output encoding.",
+      "categories": [
+        "security",
+        "database",
+        "docs"
+      ],
+      "triggers": [
+        "schema",
+        "validation",
+        "zod",
+        "joi",
+        "pydantic",
+        "parameterized",
+        "queries",
+        "csp",
+        "headers",
+        "allowlist",
+        "strategies",
+        "context-specific",
+        "output",
+        "encoding"
+      ]
+    },
+    {
+      "name": "issueforge",
+      "description": "Creates detailed, well-structured bug reports and feature requests for GitHub Issues and Jira. Use when a user wants to file a bug, write a feature request, define reproduction steps, assign severity/priority, or generate acceptance criteria for an issue tracker.",
+      "categories": [
+        "docs",
+        "git"
+      ],
+      "triggers": [
+        "file",
+        "bug",
+        "write",
+        "feature",
+        "request",
+        "define",
+        "reproduction",
+        "steps",
+        "assign",
+        "severity",
+        "priority",
+        "generate",
+        "acceptance",
+        "criteria",
+        "issue",
+        "tracker"
+      ]
+    },
+    {
+      "name": "kubecrafter",
+      "description": "Writes production-ready Kubernetes manifests and Helm chart patterns including Deployments, Services, Ingress, HPA, resource limits, security contexts, liveness/readiness probes, and Pod Security Standards. Use when a user needs help with k8s configs, Helm values, cluster autoscaling, or hardening workloads.",
+      "categories": [
+        "security",
+        "devops",
+        "docs"
+      ],
+      "triggers": [
+        "help",
+        "k8s",
+        "configs",
+        "helm",
+        "values",
+        "cluster",
+        "autoscaling",
+        "hardening",
+        "workloads"
+      ]
+    },
+    {
+      "name": "logiclens",
+      "description": "Analyzes complex code for cyclomatic complexity, deeply nested conditionals, and convoluted logic, then refactors using guard clauses, extract method, and the strategy pattern. Use when a user wants to simplify business logic, reduce cognitive complexity, or get a flowchart and before/after complexity metrics for a function.",
+      "categories": [],
+      "triggers": [
+        "simplify",
+        "business",
+        "logic",
+        "reduce",
+        "cognitive",
+        "complexity",
+        "get",
+        "flowchart",
+        "before",
+        "after",
+        "metrics",
+        "function"
+      ]
+    },
+    {
+      "name": "mocksmith",
+      "description": "Generates realistic, schema-driven mock data using Faker.js or factory_boy, stubs API responses with MSW, and produces edge-case datasets from OpenAPI specs or TypeScript interfaces. Use when a user needs test fixtures, factory functions, referentially consistent seed data, or browser/Node API mocking.",
+      "categories": [
+        "testing",
+        "frontend",
+        "database",
+        "docs",
+        "ai/ml"
+      ],
+      "triggers": [
+        "test",
+        "fixtures",
+        "factory",
+        "functions",
+        "referentially",
+        "consistent",
+        "seed",
+        "data",
+        "browser",
+        "node",
+        "api",
+        "mocking"
+      ]
+    },
+    {
+      "name": "modelsensei",
+      "description": "Designs domain-driven data models using DDD aggregates and value objects, produces ORM mappings for SQLAlchemy/Prisma/ActiveRecord, prevents N+1 queries, and generates database migration files. Use when a user needs help with data modeling, ORM schema design, query optimization, or database migrations.",
+      "categories": [
+        "frontend",
+        "database",
+        "architecture",
+        "performance",
+        "ai/ml"
+      ],
+      "triggers": [
+        "help",
+        "data",
+        "modeling",
+        "orm",
+        "schema",
+        "design",
+        "query",
+        "optimization",
+        "database",
+        "migrations"
+      ]
+    },
+    {
+      "name": "perfdetective",
+      "description": "Profile application performance, identify CPU/memory/I/O bottlenecks, and deliver optimized code with before/after benchmarks. Use when a user needs to find performance issues, reduce latency, lower memory usage, or speed up slow functions/endpoints.",
+      "categories": [
+        "database",
+        "performance"
+      ],
+      "triggers": [
+        "find",
+        "performance",
+        "issues",
+        "reduce",
+        "latency",
+        "lower",
+        "memory",
+        "usage",
+        "speed",
+        "slow",
+        "functions",
+        "endpoints"
+      ]
+    },
+    {
+      "name": "pipelinepro",
+      "description": "Design and implement CI/CD pipelines using GitHub Actions or GitLab CI, including pipeline stages, secrets management, deployment strategies (blue-green, canary), artifact pinning, and rollback procedures. Use when a user needs to build, fix, or improve a CI/CD pipeline or deployment workflow.",
+      "categories": [
+        "security",
+        "frontend",
+        "devops",
+        "git"
+      ],
+      "triggers": [
+        "build",
+        "fix",
+        "improve",
+        "pipeline",
+        "deployment",
+        "workflow"
+      ]
+    },
+    {
+      "name": "polyglotshift",
+      "description": "Translate code accurately between programming languages, preserving logic and semantics while adopting target-language idioms, type systems, and standard libraries. Use when a user needs to port, convert, or rewrite code from one language to another.",
+      "categories": [
+        "docs"
+      ],
+      "triggers": [
+        "port",
+        "convert",
+        "rewrite",
+        "code",
+        "one",
+        "language",
+        "another"
+      ]
+    },
+    {
+      "name": "prmentor",
+      "description": "Review pull requests with structured diff analysis, tiered feedback (blocking/suggestion/nit), scope checks, test coverage delta, and a merge readiness checklist. Use when a user wants a PR reviewed, wants to write better PRs, or needs feedback on code changes.",
+      "categories": [
+        "testing",
+        "docs",
+        "git",
+        "ai/ml"
+      ],
+      "triggers": [
+        "reviewed",
+        "write",
+        "better",
+        "prs",
+        "feedback",
+        "code",
+        "changes"
+      ]
+    },
+    {
+      "name": "promptforge",
+      "description": "Craft, refine, and optimize LLM prompts using zero-shot, few-shot, Chain-of-Thought, ReAct, and structured output techniques. Use when a user needs to write a prompt, improve an existing prompt, or design a prompt pipeline for a specific AI task.",
+      "categories": [
+        "frontend",
+        "devops",
+        "docs",
+        "performance",
+        "ai/ml"
+      ],
+      "triggers": [
+        "write",
+        "prompt",
+        "improve",
+        "existing",
+        "design",
+        "pipeline",
+        "specific",
+        "task"
+      ]
+    },
+    {
+      "name": "python-master",
+      "description": "Builds, debugs, and fixes Python code using structured decision workflows with named tools (ruff, mypy, pytest, uv/poetry). Covers environment setup, testing, error handling, performance profiling, memory leak diagnosis, and dependency conflict resolution. Use when a user asks to build, fix, debug, or create Python code.",
+      "categories": [
+        "testing",
+        "frontend",
+        "devops",
+        "database",
+        "performance"
+      ],
+      "triggers": [
+        "build",
+        "fix",
+        "debug",
+        "create",
+        "python",
+        "code"
+      ]
+    },
+    {
+      "name": "querypulse",
+      "description": "Analyze and optimize SQL query performance using EXPLAIN ANALYZE, index design, covering indexes, N+1 detection, and deadlock diagnosis across PostgreSQL and MySQL. Use when a user has a slow query, a deadlock, a missing index, or wants to understand a query execution plan.",
+      "categories": [
+        "database",
+        "performance"
+      ],
+      "triggers": [
+        "slow",
+        "query",
+        "deadlock",
+        "missing",
+        "index",
+        "understand",
+        "execution",
+        "plan"
+      ]
+    },
+    {
+      "name": "react-ranger",
+      "description": "Builds, debugs, and fixes React applications using TypeScript, hooks, and modern patterns (Server Components, Zustand, React Query). Includes structured debugging decision tree, testing with Vitest/RTL, accessibility checklist, and performance optimization. Use when a user asks to build, create, fix, debug, or improve React code.",
+      "categories": [
+        "testing",
+        "frontend",
+        "database",
+        "performance"
+      ],
+      "triggers": [
+        "build",
+        "create",
+        "fix",
+        "debug",
+        "improve",
+        "react",
+        "code"
+      ]
+    },
+    {
+      "name": "readmecraft",
+      "description": "Write or improve README files following the standard-readme spec, with mandatory sections, shields.io badges, clear installation/usage examples, and a contribution guide. Use when a user needs a README created, reviewed, or updated for a project.",
+      "categories": [
+        "frontend",
+        "docs"
+      ],
+      "triggers": [
+        "readme",
+        "created",
+        "reviewed",
+        "updated",
+        "project"
+      ]
+    },
+    {
+      "name": "refactorx",
+      "description": "Refactor code safely using Fowler's catalog of patterns (Extract Method, Replace Conditional with Polymorphism, etc.), strangler fig for legacy systems, and cyclomatic complexity reduction. Use when a user wants to clean up code, reduce technical debt, modernize a legacy system, or improve maintainability.",
+      "categories": [],
+      "triggers": [
+        "clean",
+        "code",
+        "reduce",
+        "technical",
+        "debt",
+        "modernize",
+        "legacy",
+        "system",
+        "improve",
+        "maintainability"
+      ]
+    },
+    {
+      "name": "renderboost",
+      "description": "Optimize frontend rendering performance by improving Core Web Vitals (LCP, CLS, INP), reducing reflows/repaints, and applying lazy loading, IntersectionObserver, and requestAnimationFrame patterns. Use when a user needs to improve page speed, fix janky animations, or boost Lighthouse scores.",
+      "categories": [
+        "frontend",
+        "database",
+        "performance"
+      ],
+      "triggers": [
+        "improve",
+        "page",
+        "speed",
+        "fix",
+        "janky",
+        "animations",
+        "boost",
+        "lighthouse",
+        "scores"
+      ]
+    },
+    {
+      "name": "scrapemaster",
+      "description": "Build resilient web scrapers using a static-vs-JS-rendered decision tree, Playwright/Cheerio/BeautifulSoup, robots.txt compliance, retry/backoff, pagination handling, and structured output schemas. Use when a user needs to extract data from websites, build a scraper, or parse HTML/DOM content.",
+      "categories": [
+        "frontend",
+        "database",
+        "ai/ml"
+      ],
+      "triggers": [
+        "extract",
+        "data",
+        "websites",
+        "build",
+        "scraper",
+        "parse",
+        "html",
+        "dom",
+        "content"
+      ]
+    },
+    {
+      "name": "secretsniffer",
+      "description": "Audits codebases and git history for hardcoded credentials, API keys, and sensitive data exposures. Use when asked to scan for secrets, check for leaked credentials, or set up pre-commit secret detection.",
+      "categories": [
+        "security",
+        "git"
+      ],
+      "triggers": [
+        "scan",
+        "secrets",
+        "check",
+        "leaked",
+        "credentials",
+        "pre-commit",
+        "secret",
+        "detection"
+      ]
+    },
+    {
+      "name": "securescan",
+      "description": "Performs static application security testing (SAST) to identify OWASP Top 10 vulnerabilities, CWE weaknesses, and insecure coding patterns. Use when asked to security audit code, find vulnerabilities, run SAST analysis, or recommend secure coding fixes.",
+      "categories": [
+        "security",
+        "testing",
+        "database"
+      ],
+      "triggers": [
+        "security",
+        "audit",
+        "code",
+        "find",
+        "vulnerabilities",
+        "run",
+        "sast",
+        "analysis",
+        "recommend",
+        "secure",
+        "coding",
+        "fixes"
+      ]
+    },
+    {
+      "name": "seomancer",
+      "description": "Optimizes technical SEO including structured data (JSON-LD/Schema.org), meta tags, Open Graph, canonical/hreflang tags, Core Web Vitals, and crawlability. Use when asked to audit SEO, fix meta tags, add structured data, improve Lighthouse scores, or configure robots.txt/sitemap.xml.",
+      "categories": [
+        "security",
+        "database",
+        "performance",
+        "ai/ml"
+      ],
+      "triggers": [
+        "audit",
+        "seo",
+        "fix",
+        "meta",
+        "tags",
+        "add",
+        "structured",
+        "data",
+        "improve",
+        "lighthouse",
+        "scores",
+        "configure",
+        "robots"
+      ]
+    },
+    {
+      "name": "servicesplitter",
+      "description": "Decomposes monolithic applications into microservices using DDD bounded contexts, event storming, and the strangler fig pattern. Use when asked to split a monolith, design microservice boundaries, define service contracts, or implement saga/circuit breaker patterns.",
+      "categories": [
+        "frontend",
+        "database",
+        "architecture"
+      ],
+      "triggers": [
+        "split",
+        "monolith",
+        "design",
+        "microservice",
+        "boundaries",
+        "define",
+        "service",
+        "contracts",
+        "implement",
+        "saga",
+        "circuit",
+        "breaker",
+        "patterns"
+      ]
+    },
+    {
+      "name": "speedsmith",
+      "description": "Implements performance optimizations for web applications including caching strategies, asset delivery, code splitting, and image optimization. Use when asked to improve page load times, reduce latency, optimize assets, or fix Core Web Vitals scores.",
+      "categories": [
+        "frontend",
+        "database",
+        "performance"
+      ],
+      "triggers": [
+        "improve",
+        "page",
+        "load",
+        "times",
+        "reduce",
+        "latency",
+        "optimize",
+        "assets",
+        "fix",
+        "core",
+        "web",
+        "vitals",
+        "scores"
+      ]
+    },
+    {
+      "name": "stackwise",
+      "description": "Advises on technology stack selection, evaluates library trade-offs, and produces Architecture Decision Records (ADRs). Use when asked to choose a framework, compare libraries, evaluate tech stack options, or document architectural decisions with rejected alternatives.",
+      "categories": [
+        "architecture",
+        "docs"
+      ],
+      "triggers": [
+        "choose",
+        "framework",
+        "compare",
+        "libraries",
+        "evaluate",
+        "tech",
+        "stack",
+        "options",
+        "document",
+        "architectural",
+        "decisions",
+        "rejected",
+        "alternatives"
+      ]
+    },
+    {
+      "name": "taskorchestrator",
+      "description": "Designs and implements asynchronous task queues, distributed workflows, and worker orchestration systems. Use when asked to build job queues, implement background workers, design saga workflows, handle retry logic, or configure dead-letter queues with Celery, BullMQ, or Temporal.",
+      "categories": [
+        "frontend",
+        "devops",
+        "architecture",
+        "ai/ml"
+      ],
+      "triggers": [
+        "build",
+        "job",
+        "queues",
+        "implement",
+        "background",
+        "workers",
+        "design",
+        "saga",
+        "workflows",
+        "handle",
+        "retry",
+        "logic",
+        "configure",
+        "dead-letter",
+        "celery",
+        "bullmq",
+        "temporal"
+      ]
+    },
+    {
+      "name": "testcrafter",
+      "description": "Writes unit and integration tests using Jest, Vitest, Pytest, or JUnit following the AAA pattern and test pyramid principles. Use when asked to write tests, improve test coverage, set up a testing strategy, configure CI test gates, or decide between mocking vs. real implementations.",
+      "categories": [
+        "testing",
+        "docs",
+        "ai/ml"
+      ],
+      "triggers": [
+        "write",
+        "tests",
+        "improve",
+        "test",
+        "coverage",
+        "testing",
+        "strategy",
+        "configure",
+        "gates",
+        "decide",
+        "between",
+        "mocking"
+      ]
+    },
+    {
+      "name": "tracemind",
+      "description": "Implements distributed tracing, structured logging, and observability using OpenTelemetry, Jaeger/Tempo, and SLO-based alerting. Use when asked to add tracing to a service, implement structured logging, set up correlation IDs, configure OpenTelemetry, analyze stack traces, or build SLO alerts.",
+      "categories": [
+        "frontend",
+        "architecture"
+      ],
+      "triggers": [
+        "add",
+        "tracing",
+        "service",
+        "implement",
+        "structured",
+        "logging",
+        "correlation",
+        "ids",
+        "configure",
+        "opentelemetry",
+        "analyze",
+        "stack",
+        "traces",
+        "build",
+        "slo",
+        "alerts"
+      ]
+    },
+    {
+      "name": "uismith",
+      "description": "Builds accessible, composable UI components using Atomic Design principles, WCAG AA compliance, design tokens, and CSS Modules or Tailwind CSS. Use when asked to create UI components, audit accessibility, implement ARIA roles, set up a design system, or decompose a UI into reusable components.",
+      "categories": [
+        "security",
+        "frontend"
+      ],
+      "triggers": [
+        "create",
+        "components",
+        "audit",
+        "accessibility",
+        "implement",
+        "aria",
+        "roles",
+        "design",
+        "system",
+        "decompose",
+        "into",
+        "reusable"
+      ]
+    }
+  ]
+}
