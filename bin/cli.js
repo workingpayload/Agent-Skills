@@ -13,6 +13,7 @@ const HOME = os.homedir();
 const TARGETS = {
   claude: path.join(HOME, ".claude", "commands"),
   gemini: path.join(HOME, ".gemini", "commands"),
+  antigravity: path.join(HOME, ".gemini", "antigravity", "skills"),
 };
 
 // ── Helpers ────────────────────────────────────────────────────────
@@ -66,6 +67,19 @@ function slugify(name) {
   return name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
 }
 
+function copyDirSync(src, dest) {
+  fs.mkdirSync(dest, { recursive: true });
+  for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+    if (entry.isDirectory()) {
+      copyDirSync(srcPath, destPath);
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  }
+}
+
 // ── Commands ───────────────────────────────────────────────────────
 
 function cmdInstall(args) {
@@ -75,11 +89,12 @@ function cmdInstall(args) {
   let target = flags.target;
   if (!target) {
     if (fs.existsSync(TARGETS.claude)) target = "claude";
+    else if (fs.existsSync(TARGETS.antigravity)) target = "antigravity";
     else if (fs.existsSync(TARGETS.gemini)) target = "gemini";
     else target = "claude"; // default
   }
   if (!TARGETS[target]) {
-    console.error(`Unknown target: ${target}. Use "claude" or "gemini".`);
+    console.error(`Unknown target: ${target}. Use "claude", "gemini", or "antigravity".`);
     process.exit(1);
   }
 
@@ -112,7 +127,10 @@ function cmdInstall(args) {
     const slug = slugify(skill.name);
     const dest = path.join(installDir, `${slug}.md`);
 
-    if (fs.existsSync(dest) && !force) {
+    const existsAlready = target === "antigravity"
+      ? fs.existsSync(path.join(installDir, slug, "SKILL.md"))
+      : fs.existsSync(dest);
+    if (existsAlready && !force) {
       if (!dryRun) console.log(`  SKIP  ${slug} (already exists, use --force to overwrite)`);
       skipped++;
       continue;
@@ -129,24 +147,60 @@ function cmdInstall(args) {
       }
     }
 
-    if (dryRun) {
-      console.log(`  Would install ${slug}`);
-      console.log(`    src : ${skill.fullPath}`);
-      console.log(`    dest: ${dest}`);
+    if (target === "antigravity") {
+      // Antigravity uses directory-based skills: each skill is a directory with SKILL.md
+      const skillDir = path.join(installDir, slug);
+      const destFile = path.join(skillDir, "SKILL.md");
+
+      if (dryRun) {
+        console.log(`  Would install ${slug}`);
+        console.log(`    src : ${skill.fullPath}`);
+        console.log(`    dest: ${destFile}`);
+      } else {
+        try {
+          fs.mkdirSync(skillDir, { recursive: true });
+          fs.copyFileSync(skill.fullPath, destFile);
+          // Copy optional assets (scripts/, references/) if they exist in source
+          const srcDir = path.dirname(skill.fullPath);
+          for (const subdir of ["scripts", "references", "assets"]) {
+            const srcSub = path.join(srcDir, subdir);
+            if (fs.existsSync(srcSub) && fs.statSync(srcSub).isDirectory()) {
+              copyDirSync(srcSub, path.join(skillDir, subdir));
+            }
+          }
+          meta[slug] = {
+            name: slug,
+            source: skill.fullPath,
+            installed_at: new Date().toISOString(),
+            directory: skill.dir,
+          };
+          installed++;
+          console.log(`  OK    ${slug}`);
+        } catch (err) {
+          console.log(`  FAIL  ${slug} — ${err.message}`);
+          failed++;
+        }
+      }
     } else {
-      try {
-        fs.copyFileSync(skill.fullPath, dest);
-        meta[slug] = {
-          name: slug,
-          source: skill.fullPath,
-          installed_at: new Date().toISOString(),
-          directory: skill.dir,
-        };
-        installed++;
-        console.log(`  OK    ${slug}`);
-      } catch (err) {
-        console.log(`  FAIL  ${slug} — ${err.message}`);
-        failed++;
+      if (dryRun) {
+        console.log(`  Would install ${slug}`);
+        console.log(`    src : ${skill.fullPath}`);
+        console.log(`    dest: ${dest}`);
+      } else {
+        try {
+          fs.copyFileSync(skill.fullPath, dest);
+          meta[slug] = {
+            name: slug,
+            source: skill.fullPath,
+            installed_at: new Date().toISOString(),
+            directory: skill.dir,
+          };
+          installed++;
+          console.log(`  OK    ${slug}`);
+        } catch (err) {
+          console.log(`  FAIL  ${slug} — ${err.message}`);
+          failed++;
+        }
       }
     }
   }
@@ -162,6 +216,10 @@ function cmdInstall(args) {
     if (target === "claude") {
       console.log(`  In Claude Code, type /<skill-name> to invoke a skill.`);
       console.log(`  Examples: /codesage, /testcrafter, /dockmaster, /python-master`);
+    } else if (target === "antigravity") {
+      console.log(`  Skills are now available in Google Antigravity.`);
+      console.log(`  The agent will automatically match skills to your tasks via semantic triggering.`);
+      console.log(`  Installed to: ${installDir}`);
     } else {
       console.log(`  Skills are now available in your Gemini context.`);
     }
@@ -175,7 +233,7 @@ function cmdUninstall(args) {
   const names = flags._.filter(n => n !== "uninstall");
 
   if (names.length === 0) {
-    console.error("Usage: agent-skills uninstall <skill-name> [<skill-name>...] [-t claude|gemini]");
+    console.error("Usage: agent-skills uninstall <skill-name> [<skill-name>...] [-t claude|gemini|antigravity]");
     process.exit(1);
   }
 
@@ -252,24 +310,24 @@ function cmdBuildIndex(args) {
 
 function cmdHelp() {
   console.log(`
-agent-skills — AI-powered developer skills for Claude and Gemini
+agent-skills — AI-powered developer skills for Claude, Gemini, and Antigravity
 
 Usage:
   agent-skills <command> [options]
 
 Commands:
-  install              Install skills to Claude or Gemini
-    -t, --target       Target: "claude" or "gemini" (default: auto-detect)
+  install              Install skills to Claude, Gemini, or Antigravity
+    -t, --target       Target: "claude", "gemini", or "antigravity" (default: auto-detect)
     -s, --skills       Comma-separated skill names (default: all)
     --force            Overwrite existing skills
     --dry-run          Preview without writing files
     --validate         Validate skills before installing
 
   uninstall <names>    Remove installed skills
-    -t, --target       Target: "claude" or "gemini"
+    -t, --target       Target: "claude", "gemini", or "antigravity"
 
   list                 List installed skills
-    -t, --target       Target: "claude" or "gemini"
+    -t, --target       Target: "claude", "gemini", or "antigravity"
 
   route "<prompt>"     Find the best skill for a task
     -n, --top-n        Number of results (default: 3)
@@ -277,7 +335,7 @@ Commands:
     --interactive      Interactive prompt mode
 
   doctor               Check health of installed skills
-    -t, --target       Target: "claude" or "gemini" (default: both)
+    -t, --target       Target: "claude", "gemini", or "antigravity" (default: all)
 
   validate             Lint all skill files
     --fix              Auto-fix known issues
@@ -292,6 +350,7 @@ Commands:
 Examples:
   npx agent-skills install                      # Install all to Claude
   npx agent-skills install -t gemini -s CodeSage,TestCrafter
+  npx agent-skills install -t antigravity       # Install all to Google Antigravity
   npx agent-skills route "review my Python code"
   npx agent-skills doctor
   npx agent-skills list

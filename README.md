@@ -1,6 +1,6 @@
 # 🧠 Agent Skills
 
-> Install and run AI-powered developer skills across Claude and Gemini.
+> Install and run AI-powered developer skills across Claude, Gemini, and Google Antigravity.
 
 ⚡ Turn prompts into reusable, installable skills
 ⚡ Works from CLI in seconds
@@ -19,7 +19,7 @@ npx @workingpayload/agent-skills install
 ## ✨ Features
 
 * 🧠 54 expert-level developer skills with named tools, concrete steps, and edge case coverage
-* 🤖 Multi-LLM support (Claude, Gemini)
+* 🤖 Multi-LLM support (Claude, Gemini, Google Antigravity)
 * 📦 CLI-first workflow with install, route, doctor, and score commands
 * 🔄 Versioning & health checks for installed skills
 * 🎯 Selective install — pick only the skills you need
@@ -54,6 +54,14 @@ npx @workingpayload/agent-skills install -s CodeSage,TestCrafter,BugHunter Pro
 ```bash
 npx @workingpayload/agent-skills install -t gemini
 ```
+
+### Install for Google Antigravity
+
+```bash
+npx @workingpayload/agent-skills install -t antigravity
+```
+
+Skills are installed as directory-based packages (`SKILL.md` + optional scripts/references) to `~/.gemini/antigravity/skills/`. The Antigravity agent automatically matches skills to your tasks via semantic triggering.
 
 ---
 
@@ -106,7 +114,7 @@ npx @workingpayload/agent-skills route "design database schema"
 
 | Flag | Description |
 | --- | --- |
-| `-t, --target` | Target platform: `claude` or `gemini` |
+| `-t, --target` | Target platform: `claude`, `gemini`, or `antigravity` |
 | `-s, --skills` | Comma-separated skill names to install |
 | `--force` | Overwrite existing skills |
 | `--dry-run` | Preview without writing files |
@@ -120,16 +128,17 @@ npx @workingpayload/agent-skills route "design database schema"
 ## 🗂️ Where Skills Are Installed
 
 ```
-~/.claude/commands/    # Claude Code slash commands
-~/.gemini/commands/    # Gemini skills
+~/.claude/commands/                # Claude Code slash commands
+~/.gemini/commands/                # Gemini skills
+~/.gemini/antigravity/skills/      # Google Antigravity skills (directory-based)
 ```
 
-Each skill becomes a slash command:
+Each skill becomes a slash command (Claude/Gemini) or a directory-based skill (Antigravity):
 
 ```
-~/.claude/commands/codesage.md      → /codesage
-~/.claude/commands/testcrafter.md   → /testcrafter
-~/.claude/commands/dockmaster.md    → /dockmaster
+~/.claude/commands/codesage.md                → /codesage
+~/.claude/commands/testcrafter.md             → /testcrafter
+~/.gemini/antigravity/skills/codesage/SKILL.md  → auto-triggered by Antigravity agent
 ```
 
 ---
@@ -334,6 +343,7 @@ Run: `ruff check`, `mypy --strict`, `bandit -r .`...
 
 * Claude (Anthropic)
 * Gemini (Google)
+* Google Antigravity (agent-first IDE)
 
 ---
 

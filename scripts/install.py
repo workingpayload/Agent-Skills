@@ -34,11 +34,13 @@ META_FILE = ".skills-meta.json"
 INSTALL_DIRS = {
     "claude": Path.home() / ".claude" / "commands",
     "gemini": Path.home() / ".gemini" / "commands",
+    "antigravity": Path.home() / ".gemini" / "antigravity" / "skills",
 }
 
 POST_INSTALL_INSTRUCTIONS = {
     "claude": "Use skills by typing /skill-name in Claude Code",
     "gemini": "Skills are available in your Gemini context",
+    "antigravity": "Skills are available in Google Antigravity via semantic triggering",
 }
 
 # ---------------------------------------------------------------------------
@@ -234,24 +236,57 @@ def install_skills(
                 continue
 
         # Skip if already installed and not forcing
-        if dest.exists() and not force:
+        exists_already = (
+            (install_dir / skill_name / "SKILL.md").exists()
+            if target == "antigravity"
+            else dest.exists()
+        )
+        if exists_already and not force:
             print(f"  SKIP  {skill_name} (already installed; use --force to overwrite)")
             skipped_count += 1
             continue
 
-        action = "Would install" if dry_run else "Installing"
-        print(f"  {action}  {skill_name}")
-        print(f"         src : {skill_file}")
-        print(f"         dest: {dest}")
+        if target == "antigravity":
+            # Antigravity: directory-based skills with SKILL.md
+            skill_dir = install_dir / skill_name
+            dest_file = skill_dir / "SKILL.md"
+            action = "Would install" if dry_run else "Installing"
+            print(f"  {action}  {skill_name}")
+            print(f"         src : {skill_file}")
+            print(f"         dest: {dest_file}")
 
-        if not dry_run:
-            shutil.copy2(str(skill_file), str(dest))
-            meta[skill_name] = {
-                "name": skill_name,
-                "version": git_hash(skill_file),
-                "installed_at": datetime.now(timezone.utc).isoformat(),
-                "source_path": str(skill_file),
-            }
+            if not dry_run:
+                skill_dir.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(str(skill_file), str(dest_file))
+                # Copy optional asset directories (scripts/, references/, assets/)
+                src_dir = skill_file.parent
+                for subdir_name in ("scripts", "references", "assets"):
+                    src_sub = src_dir / subdir_name
+                    if src_sub.is_dir():
+                        dest_sub = skill_dir / subdir_name
+                        if dest_sub.exists():
+                            shutil.rmtree(str(dest_sub))
+                        shutil.copytree(str(src_sub), str(dest_sub))
+                meta[skill_name] = {
+                    "name": skill_name,
+                    "version": git_hash(skill_file),
+                    "installed_at": datetime.now(timezone.utc).isoformat(),
+                    "source_path": str(skill_file),
+                }
+        else:
+            action = "Would install" if dry_run else "Installing"
+            print(f"  {action}  {skill_name}")
+            print(f"         src : {skill_file}")
+            print(f"         dest: {dest}")
+
+            if not dry_run:
+                shutil.copy2(str(skill_file), str(dest))
+                meta[skill_name] = {
+                    "name": skill_name,
+                    "version": git_hash(skill_file),
+                    "installed_at": datetime.now(timezone.utc).isoformat(),
+                    "source_path": str(skill_file),
+                }
 
         installed_count += 1
 
@@ -271,6 +306,10 @@ def install_skills(
         if target == "claude":
             print(f"  {instruction}")
             print(f"  Example: /codesage, /uismith, /bugHunter-pro")
+        elif target == "antigravity":
+            print(f"  {instruction}")
+            print(f"  The agent will automatically match skills to your tasks.")
+            print(f"  Skills installed as directories with SKILL.md files.")
         else:
             print(f"  {instruction}")
         print(f"\nInstall directory: {install_dir}")
@@ -289,7 +328,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 
     parser.add_argument(
         "--target", "-t",
-        choices=["claude", "gemini"],
+        choices=["claude", "gemini", "antigravity"],
         default=None,
         help="Target platform (default: auto-detect based on existing directories).",
     )

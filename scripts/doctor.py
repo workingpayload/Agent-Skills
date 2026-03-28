@@ -34,6 +34,7 @@ META_FILENAME = ".skills-meta.json"
 INSTALL_DIRS = {
     "claude": Path.home() / ".claude" / "commands",
     "gemini": Path.home() / ".gemini" / "commands",
+    "antigravity": Path.home() / ".gemini" / "antigravity" / "skills",
 }
 
 
@@ -474,13 +475,13 @@ def main() -> int:
     )
     parser.add_argument(
         "--target", "-t",
-        choices=["claude", "gemini"],
+        choices=["claude", "gemini", "antigravity"],
         default=None,
-        help="Which install target to check (default: both).",
+        help="Which install target to check (default: all).",
     )
     args = parser.parse_args()
 
-    targets = [args.target] if args.target else ["claude", "gemini"]
+    targets = [args.target] if args.target else ["claude", "gemini", "antigravity"]
 
     repo_root = Path(__file__).resolve().parent.parent
 
